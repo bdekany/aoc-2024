@@ -2,3 +2,5 @@
 
 ## Day 1
 - Go
+## Day 2
+- Go

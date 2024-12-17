@@ -29,7 +29,7 @@ func isSafe(s []string) bool {
 	}
 
 	for n, _ := range report {
-		if n == len(report)-1 { break }
+		if n == len(report)-1	 { break }
 
 		pente := report[n] - report[n+1]
 		if pente == 0 || pente > 3 || pente < -3 {
@@ -52,7 +52,7 @@ func main() {
 	defer file.Close()
 
 	var result_part1 int
-	//var result_part2 int
+	var result_part2 int
 
 	var reports [][]string
 
@@ -65,17 +65,27 @@ func main() {
 	}
 
 	result_part1 = 0
+	result_part2 = 0
+
 	for _, s := range reports {
 		if isSafe(s) {
 			result_part1++
+			result_part2++
+		} else {
+			for n, _ := range s {
+				
+				if n == len(s) { break }
+				t := slices.Clone(s)
+				t = slices.Delete(t, n, n+1)
+				
+				if isSafe(t) {
+					result_part2++
+					break
+				}
+			}
 		}
 	}
 
-
-
-
-
-
 	fmt.Println("Day 2 - Part 1: ", result_part1)
-	//fmt.Println("Day 2 - Part 2: ", result_part2)
+	fmt.Println("Day 2 - Part 2: ", result_part2)
 }
