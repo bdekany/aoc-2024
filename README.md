@@ -4,3 +4,5 @@
 - Go
 ## Day 2
 - Go
+## Day 3
+- Python
