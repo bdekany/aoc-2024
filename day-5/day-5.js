@@ -48,11 +48,26 @@ readInterface.on('line', function(line) {
             }
         }
 
-        if ( redflag == 0 ) {
+        if ( redflag == 0 ) {  // Part 1
             update = line.split(",")
-            console.log("serie valide: ", update)
+            //console.log("serie valide: ", update)
             index = Math.floor(update.length / 2)
             resultat_part1 += parseInt(update[index])
+        } else {     // Part 2
+            update = line.split(",")
+            update.sort((a, b) => {
+                if (! Object.hasOwn(rulebook, a)) {
+                    return 0
+                }
+                if (rulebook[a].includes(b)) {
+                    return -1
+                } else {
+                    return 0
+                }
+            })
+            console.log("new:", update)
+            index = Math.floor(update.length / 2)
+            resultat_part2 += parseInt(update[index])
         }
     }
 
